@@ -1,8 +1,8 @@
-import { Task } from "../interfaces/task.interface";
+import { CreateTask } from "../interfaces/task.interface";
 
 const URL = "http://localhost:3000/api";
 
-export const CreateTaskRequest = (task: Task) =>
+export const CreateTaskRequest = (task: CreateTask) =>
   fetch(`${URL}/task`, {
     method: "POST",
     body: JSON.stringify(task),
@@ -10,3 +10,5 @@ export const CreateTaskRequest = (task: Task) =>
       "Content-Type": "application/json",
     },
   });
+
+export const getTaskRequest = () => fetch(`${URL}/task`);
