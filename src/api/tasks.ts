@@ -12,3 +12,8 @@ export const CreateTaskRequest = (task: CreateTask) =>
   });
 
 export const getTaskRequest = () => fetch(`${URL}/task`);
+
+export const deleteTaskRequest = (id: string) =>
+  fetch(`${URL}/task/${id}`, {
+    method: "DELETE",
+  });

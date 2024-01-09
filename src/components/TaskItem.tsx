@@ -1,3 +1,4 @@
+import { useTasks } from "../context/useTasks";
 import { Task } from "../interfaces/task.interface";
 
 interface Props {
@@ -5,6 +6,7 @@ interface Props {
 }
 
 function TaskItem({ task }: Props) {
+  const { deleteTask } = useTasks();
   return (
     <div
       key={task._id}
@@ -24,7 +26,15 @@ function TaskItem({ task }: Props) {
       </div>
       <div className="flex gap-x-2">
         <button>Actualizar</button>
-        <button>Eliminar</button>
+        <button
+          onClick={async () => {
+            if (!window.confirm("¿Estas seguro de querer eliminar esta tarea?"))
+              return;
+            await deleteTask(task._id);
+          }}
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   );
